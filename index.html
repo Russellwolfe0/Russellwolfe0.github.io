@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Russell Wolfe</title>
+<meta name="description" content="Computational chemistry researcher at Colorado State University working on quantum chemistry benchmarks and machine learning potentials.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light dark;
+  --paper: #fbfcff;
+  --grid: #e3e9f7;
+  --ink: #10203f;
+  --muted: #4b5a78;
+  --accent: #1f5eff;
+  --warn: #e8452c;
+  --tint: #eaf0ff;
+  --serif: "Literata", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0d1426;
+    --grid: #18213a;
+    --ink: #eaf0ff;
+    --muted: #a3b1d1;
+    --accent: #6d9bff;
+    --warn: #ff7a63;
+    --tint: #16213f;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+}
+main { max-width: 46rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.6rem, 8vw, 4rem); letter-spacing: -0.02em; }
+h2 { font-size: 1.6rem; margin-bottom: 1.25rem; }
+h3 { font-size: 1.3rem; margin-bottom: 0.35rem; }
+p { margin: 0 0 1rem; max-width: 64ch; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.lede { font-family: var(--serif); font-size: 1.2rem; color: var(--muted); margin: 1rem 0 2.5rem; }
+figure { margin: 0 0 4rem; }
+figure svg { width: 100%; height: auto; display: block; background: var(--paper); border: 1px solid var(--grid); border-radius: 4px; }
+figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem; }
+section { margin-bottom: 3.5rem; }
+.project { padding: 1.25rem 0 0.5rem; border-top: 3px solid var(--accent); margin-bottom: 1.5rem; }
+.feature { background: var(--tint); padding: 1.25rem 1.25rem 0.5rem; border-top-width: 4px; }
+.status { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
+dl.skills { margin: 0; display: grid; grid-template-columns: 9rem 1fr; gap: 0.6rem 1rem; }
+dl.skills dt { font-weight: 600; }
+dl.skills dd { margin: 0; }
+@media (max-width: 34rem) { dl.skills { grid-template-columns: 1fr; gap: 0.1rem; } dl.skills dd { margin-bottom: 0.7rem; } }
+ul.links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+.t { fill: var(--muted); font-family: var(--sans); font-size: 12px; }
+.t b { font-weight: 600; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Russell Wolfe</h1>
+    <p class="lede">Computational chemistry researcher at Colorado State University, working on quantum chemistry benchmarks and machine learning potentials. Math major.</p>
+  </header>
+
+  <figure>
+    <svg viewBox="0 0 640 240" role="img" aria-label="Schematic energy landscape with a shallow spurious T2 minimum and a deeper correct T1 minimum">
+      <line x1="20" y1="215" x2="620" y2="215" stroke="var(--ink)" stroke-width="1.5"/>
+      <path d="M20 60 C80 60 110 135 170 135 C230 135 240 80 280 80 C330 80 350 188 410 188 C480 188 520 70 620 70" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M40 40 C80 40 120 70 160 118" fill="none" stroke="var(--warn)" stroke-width="2.5" stroke-dasharray="6 5"/>
+      <polygon points="164,124 152,120 163,112" fill="var(--warn)"/>
+      <circle cx="170" cy="135" r="7" fill="var(--warn)"/>
+      <circle cx="410" cy="188" r="7" fill="var(--accent)"/>
+      <text class="t" x="60" y="28" fill="var(--warn)" style="fill:var(--warn)">standard workflow stops here</text>
+      <text class="t" x="110" y="165" style="fill:var(--warn)">spurious T2 solution</text>
+      <text class="t" x="352" y="212" style="fill:var(--accent)">correct T1 state</text>
+      <text class="t" x="20" y="234">SCF solutions (schematic)</text>
+    </svg>
+    <figcaption>The problem my main project studies: a DFT calculation can settle into the wrong electronic state without any warning.</figcaption>
+  </figure>
+
+  <section id="research">
+    <h2>Research</h2>
+    <p>I work in the Paton Lab at Colorado State University (Prof. Robert Paton), at the intersection of quantum chemistry, machine learning interatomic potentials, and benchmark development for open-shell molecules.</p>
+
+    <article class="project feature">
+      <h3>TRIP50: a benchmark for triplet-state reactions</h3>
+      <p class="status">Published. J. Chem. Theory Comput. 2026 (Hughes, Popescu &amp; Paton). I’m a co-author.</p>
+      <p>TRIP50 is a dataset of 50 triplet-state organic reactions with high-level DFT reference data. It was built to study a quiet failure in DFT: SCF calculations on triplet states often converge to a spurious T2 solution instead of the correct state, and nothing in a standard workflow flags it.</p>
+      <p>The paper shows how often this happens and gives practical checks for finding and fixing it. Calculations ran on SDSC’s Expanse supercomputer through NSF ACCESS.</p>
+      <p><a href="https://doi.org/YOUR-DOI">Read the paper</a></p>
+    </article>
+
+    <article class="project">
+      <h3>Machine learning potentials on triplet chemistry</h3>
+      <p class="status">Ongoing. Python, FAIRChem, ASE.</p>
+      <p>I use the FAIR Chemistry team’s tooling and universal ML potentials (UMA models) for atomistic simulations, and I evaluate how well these models and standard DFT methods handle TRIP50. Open-shell reactivity is hard for both, so it’s a useful test of where ML potentials hold up and where they break.</p>
+    </article>
+
+    <!-- TODO: Add figures here as you make them. Good candidates:
+         DFT error plot vs CCSD(T)/CBS, SCF convergence trajectory (wrong vs corrected),
+         MLIP parity plot, TRIP50 reaction gallery, verification workflow diagram. -->
+  </section>
+
+  <section id="projects">
+    <h2>Other projects</h2>
+    <article class="project">
+      <h3>Black bear populations under drought</h3>
+      <p class="status">In progress. Python, stochastic simulation, age-structured models.</p>
+      <p>How long a drought can a black bear population absorb before recovery becomes unlikely? I’m building an age-structured model with yearly births, cub and adult survival, and density dependence, then letting drought reduce breeding and cub survival. I’m checking a stochastic simulation against a matrix model built from the same rates.</p>
+      <p><a href="https://github.com/YOUR-USERNAME/bear-population-model">Code on GitHub</a></p>
+    </article>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <dl class="skills">
+      <dt>Quantum chemistry</dt><dd>DFT (KS and UKS), CCSD(T), SCF methods, basis sets, thermochemical corrections</dd>
+      <dt>Software</dt><dd>ORCA, Gaussian, PySCF, ASE, FAIRChem, Python</dd>
+      <dt>Machine learning</dt><dd>ML interatomic potentials, MACE, universal potentials, benchmark evaluation</dd>
+      <dt>HPC</dt><dd>SDSC Expanse, NSF ACCESS allocations</dd>
+    </dl>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <ul class="links">
+      <li><a href="https://github.com/YOUR-USERNAME">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/YOUR-LINKEDIN">LinkedIn</a></li>
+      <li><a href="mailto:you@example.com">you@example.com</a></li>
+      <li><a href="resume.pdf">Resume (PDF)</a></li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
