@@ -80,22 +80,23 @@ ul.links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wr
 <main>
   <header>
     <h1>Russell Wolfe</h1>
-    <p class="lede">Undergraduate researcher in the Paton Lab at Colorado State University, benchmarking machine learning potentials against DFT on triplet-state reactions. Math major.</p>
+    <p class="lede" style="margin-bottom:1rem">I&rsquo;m a senior at Colorado State, studying math and violin performance with a chemistry minor. I do research in the Paton Lab, where I test how well machine learning models predict chemical reactions.</p>
+    <p class="lede">I think of myself as an interdisciplinarian. Math, music, and chemistry are beautiful in different ways, and each has made me better at the others and more able to appreciate them. AI is the newest field I&rsquo;ve picked up, and it shows up in my work in two ways: it&rsquo;s what I&rsquo;m evaluating in the lab, and it&rsquo;s a tool I use to write code and analyze data. Outside of the lab and the library, I&rsquo;m the concertmaster of the CSU Symphony, and I run ultramarathons.</p>
   </header>
 
   <section id="research">
     <h2>Research</h2>
-    <p>I work in the Paton Lab (Prof. Robert Paton), where I test how well fast machine learning interatomic potentials (MLIPs) reproduce the energetics of open-shell organic reactions, a regime that is hard for both ML models and standard DFT.</p>
+    <p>I work in the Paton Lab (Prof. Robert Paton), a computational chemistry group. Predicting how molecules react normally takes hours of quantum-mechanical calculation per molecule. My work tests whether AI models can give the same answers in a fraction of a second, and where they fail.</p>
 
     <article class="project feature">
       <h3>TRIP50 benchmarking: can ML potentials handle triplet reactivity?</h3>
       <p class="status">Ongoing. Python, ASE, ORCA, RDKit, AQME. Results and code are public.</p>
-      <p>Triplet excited-state intermediates are short-lived, so mechanisms involving them depend heavily on computation. The TRIP50 dataset (Hughes, Popescu &amp; Paton, <i>J. Chem. Theory Comput.</i> 2026) gives 50 triplet-state organic reactions with DLPNO-CCSD(T)/CBS reference energies. I extended it to ask a practical question: how much accuracy do you give up by replacing DFT with an ML potential, and what do you get back?</p>
+      <p>TRIP50 (Hughes, Popescu &amp; Paton, <i>J. Chem. Theory Comput.</i> 2026) is a set of 50 reactions that pass through a triplet state, a short-lived, high-energy form of a molecule that is hard to observe experimentally, so chemists rely on calculations to understand it. Each reaction comes with reference energies from DLPNO-CCSD(T)/CBS, a slow, very accurate quantum method. I extended the benchmark to ask a practical question: how much accuracy do you give up by replacing DFT, the standard quantum method, with a machine-learned interatomic potential (MLIP), an AI model trained to predict a molecule&rsquo;s energy, and what do you get back? Across 24 methods, the best MLIP came close to the best DFT while running about 45,000 times faster.</p>
 
       <ul class="stats">
-        <li><b>24</b><span>methods: 7 DFT, 16 MLIPs, g-xTB</span></li>
+        <li><b>24</b><span>methods compared: 7 DFT, 16 AI models, 1 fast approximate method (g-xTB)</span></li>
         <li><b>50</b><span>reactions, 156 reference structures</span></li>
-        <li><b>1.8</b><span>kcal/mol, best MLIP (eSEN-MD) vs 1.3 for the best DFT</span></li>
+        <li><b>1.8</b><span>average error in kcal/mol for the best AI model (eSEN-MD), vs 1.3 for the best DFT. Lower is better</span></li>
         <li><b>~45,000×</b><span>faster than that DFT method</span></li>
       </ul>
 
@@ -152,10 +153,10 @@ ul.links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wr
 <circle cx="250" cy="26" r="4.5" fill="var(--warn)"/><text class="t" x="259" y="30">g-xTB</text>
 <line x1="342" x2="364" y1="26" y2="26" stroke="var(--ink)" stroke-width="1.3" stroke-dasharray="4 3"/><text class="t" x="370" y="30">Pareto front</text>
 </svg>
-        <figcaption>Combined MAE (average of thermodynamic and kinetic error) against run time for all 24 methods. The best MLIP lands about 0.5 kcal/mol from the best double-hybrid DFT at four to five orders of magnitude lower cost. g-xTB is slower than most MLIPs and less accurate than nearly all of them. Data: <a href="https://github.com/Russellwolfe0/TRIP50-benchmarking/blob/main/data/final/final_data_table.csv">final_data_table.csv</a>.</figcaption>
+        <figcaption>Error against run time for all 24 methods. Lower left is better: more accurate and faster. Error is the mean absolute error (MAE) against the reference, averaging reaction energies and energy barriers. The best MLIP lands about 0.5 kcal/mol from the best double-hybrid DFT at four to five orders of magnitude lower cost. g-xTB is slower than most MLIPs and less accurate than nearly all of them. Data: <a href="https://github.com/Russellwolfe0/TRIP50-benchmarking/blob/main/data/final/final_data_table.csv">final_data_table.csv</a>.</figcaption>
       </figure>
 
-      <p>I wrote the pipeline that runs every model on the reference geometries, parses the DFT output, and computes reaction energies and forward and reverse barriers. I report errors overall and by reaction type (C–C, C–O, C–S, C–Hal, Si–X, N–X and hydrogen-atom transfer), because model rankings change across categories. Only molecular models that take spin as input were usable. Spin-unaware and materials models were excluded.</p>
+      <p>I wrote the pipeline that runs every model on the reference molecules, parses the output files, and computes each reaction&rsquo;s energy change and the energy barrier it has to climb in each direction. I report errors overall and by reaction type (C–C, C–O, C–S, C–Hal, Si–X, N–X and hydrogen-atom transfer), because model rankings change across categories. Only models that can handle the electron spin of these molecules were usable; the rest were excluded.</p>
 
       <h3 style="margin-top:1.5rem">Follow-up: do ML potentials find the right conformer?</h3>
       <p>For each of the 106 non-TS species I generated RDKit conformers with AQME (553 in total), optimized them with each of the 16 MLIPs, and checked whether the lowest-energy conformer matches the model’s own optimized reference geometry (within 0.5 kcal/mol). Match rates run from 49% to 74%. Selected disagreements were checked with ωB97M-V/def2-QZVPP single points: some lower conformers are real, others are model errors.</p>
