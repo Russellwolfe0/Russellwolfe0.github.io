@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Russell Wolfe</title>
+<meta name="description" content="Computational chemistry researcher at Colorado State University, benchmarking machine learning potentials and DFT on triplet-state reactions.">
+<style>
+body { margin: 0; background: #fff; color: #222; font: 17px/1.6 Georgia, "Times New Roman", serif; }
+main { max-width: 40rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+h1 { font-size: 2rem; font-weight: normal; margin: 0 0 .25rem; }
+h2 { font-size: 1.1rem; font-weight: bold; margin: 2.5rem 0 .6rem; padding-bottom: .2rem; border-bottom: 1px solid #ccc; }
+h3 { font-size: 1rem; margin: 1.4rem 0 .3rem; }
+p { margin: 0 0 1rem; }
+a { color: #1a4f9c; }
+nav { margin: .5rem 0 0; font-size: .95rem; } nav a { margin-right: 1rem; }
+.meta { color: #666; font-size: .9rem; }
+figure { margin: 1.5rem 0; }
+figure svg { width: 100%; height: auto; display: block; }
+figcaption { font-size: .85rem; color: #555; margin-top: .4rem; }
+dl { margin: 0; display: grid; grid-template-columns: 9rem 1fr; gap: .4rem 1rem; }
+dt { font-weight: bold; } dd { margin: 0; }
+@media (max-width: 34rem) { dl { grid-template-columns: 1fr; gap: 0; } dd { margin-bottom: .6rem; } }
+.t { fill: #555; font: 11px Georgia, serif; }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Russell Wolfe</h1>
+  <p>Undergraduate researcher in the Paton Lab at Colorado State University, benchmarking machine learning potentials against DFT on triplet-state reactions. Math major.</p>
+  <nav><a href="#research">Research</a><a href="#projects">Other projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
+</header>
+
+<section id="research">
+<h2>Research</h2>
+<p>I work in the Paton Lab (Prof. Robert Paton), where I test how well fast machine learning interatomic potentials (MLIPs) reproduce the energetics of open-shell organic reactions, a regime that is hard for both ML models and standard DFT.</p>
+
+<h3>TRIP50 benchmarking: can ML potentials handle triplet reactivity?</h3>
+<p class="meta">Ongoing. Python, ASE, ORCA, RDKit, AQME. Results and code are public.</p>
+<p>Triplet excited-state intermediates are short-lived, so mechanisms involving them depend heavily on computation. The TRIP50 dataset (Hughes, Popescu &amp; Paton, <i>J. Chem. Theory Comput.</i> 2026) gives 50 triplet-state organic reactions with DLPNO-CCSD(T)/CBS reference energies. I extended it to ask a practical question: how much accuracy do you give up by replacing DFT with an ML potential, and what do you get back?</p>
+<p>I benchmarked 24 methods (7 DFT, 16 MLIPs and g-xTB) on 156 reference structures. The best MLIP (eSEN-MD) has a combined error of 1.8 kcal/mol, against 1.3 for the best DFT method, and runs about 45,000 times faster.</p>
+
+<figure>
+<svg viewBox="0 0 640 380" role="img" aria-label="Combined error versus run time for 24 methods on TRIP50. DFT methods are 1.3 to 6.8 kcal/mol and take roughly 1,000 to 10,000 seconds; most ML potentials are 1.8 to 5 kcal/mol and take about 0.01 to 0.2 seconds.">
+<line x1="52" x2="624" y1="328.0" y2="328.0" stroke="#e6e6e6"/><text class="t" x="44" y="332.0" text-anchor="end">1</text>
+<line x1="52" x2="624" y1="277.4" y2="277.4" stroke="#e6e6e6"/><text class="t" x="44" y="281.4" text-anchor="end">2</text>
+<line x1="52" x2="624" y1="226.7" y2="226.7" stroke="#e6e6e6"/><text class="t" x="44" y="230.7" text-anchor="end">3</text>
+<line x1="52" x2="624" y1="176.1" y2="176.1" stroke="#e6e6e6"/><text class="t" x="44" y="180.1" text-anchor="end">4</text>
+<line x1="52" x2="624" y1="125.4" y2="125.4" stroke="#e6e6e6"/><text class="t" x="44" y="129.4" text-anchor="end">5</text>
+<line x1="52" x2="624" y1="74.8" y2="74.8" stroke="#e6e6e6"/><text class="t" x="44" y="78.8" text-anchor="end">6</text>
+<line x1="52" x2="624" y1="24.1" y2="24.1" stroke="#e6e6e6"/><text class="t" x="44" y="28.1" text-anchor="end">7</text>
+<line y1="14" y2="328" x1="101.7" x2="101.7" stroke="#e6e6e6"/><text class="t" x="101.7" y="346" text-anchor="middle">10<tspan dy="-5" font-size="9">-2</tspan></text>
+<line y1="14" y2="328" x1="184.6" x2="184.6" stroke="#e6e6e6"/><text class="t" x="184.6" y="346" text-anchor="middle">10<tspan dy="-5" font-size="9">-1</tspan></text>
+<line y1="14" y2="328" x1="267.5" x2="267.5" stroke="#e6e6e6"/><text class="t" x="267.5" y="346" text-anchor="middle">10<tspan dy="-5" font-size="9">0</tspan></text>
+<line y1="14" y2="328" x1="350.4" x2="350.4" stroke="#e6e6e6"/><text class="t" x="350.4" y="346" text-anchor="middle">10<tspan dy="-5" font-size="9">1</tspan></text>
+<line y1="14" y2="328" x1="433.3" x2="433.3" stroke="#e6e6e6"/><text class="t" x="433.3" y="346" text-anchor="middle">10<tspan dy="-5" font-size="9">2</tspan></text>
+<line y1="14" y2="328" x1="516.2" x2="516.2" stroke="#e6e6e6"/><text class="t" x="516.2" y="346" text-anchor="middle">10<tspan dy="-5" font-size="9">3</tspan></text>
+<line y1="14" y2="328" x1="599.1" x2="599.1" stroke="#e6e6e6"/><text class="t" x="599.1" y="346" text-anchor="middle">10<tspan dy="-5" font-size="9">4</tspan></text>
+<text class="t" x="338.0" y="372" text-anchor="middle">average run time per calculation (s, log scale)</text>
+<text class="t" transform="translate(13 171.0) rotate(-90)" text-anchor="middle">combined MAE vs DLPNO-CCSD(T)/CBS (kcal/mol)</text>
+<polyline fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="4 3" points="75.5,145.6 106.0,167.3 110.6,249.9 124.3,261.0 135.5,287.4 521.6,314.2"/>
+<circle cx="521.6" cy="314.2" r="5.5" fill="#1a4f9c" fill-opacity="1"/>
+<circle cx="581.5" cy="205.0" r="4.5" fill="#1a4f9c" fill-opacity="0.75"/>
+<circle cx="562.7" cy="189.7" r="4.5" fill="#1a4f9c" fill-opacity="0.75"/>
+<circle cx="521.6" cy="293.1" r="4.5" fill="#1a4f9c" fill-opacity="0.75"/>
+<circle cx="597.2" cy="244.6" r="4.5" fill="#1a4f9c" fill-opacity="0.75"/>
+<circle cx="547.6" cy="35.9" r="4.5" fill="#1a4f9c" fill-opacity="0.75"/>
+<circle cx="585.4" cy="293.9" r="4.5" fill="#1a4f9c" fill-opacity="0.75"/>
+<circle cx="75.5" cy="145.6" r="5.5" fill="#222" fill-opacity="1"/>
+<circle cx="164.4" cy="265.9" r="4.5" fill="#222" fill-opacity="0.75"/>
+<circle cx="124.3" cy="261.0" r="5.5" fill="#222" fill-opacity="1"/>
+<circle cx="135.5" cy="287.4" r="5.5" fill="#222" fill-opacity="1"/>
+<circle cx="146.9" cy="266.0" r="4.5" fill="#222" fill-opacity="0.75"/>
+<circle cx="110.6" cy="249.9" r="5.5" fill="#222" fill-opacity="1"/>
+<circle cx="176.0" cy="248.9" r="4.5" fill="#222" fill-opacity="0.75"/>
+<circle cx="155.3" cy="183.0" r="4.5" fill="#222" fill-opacity="0.75"/>
+<circle cx="106.0" cy="167.3" r="5.5" fill="#222" fill-opacity="1"/>
+<circle cx="161.3" cy="206.4" r="4.5" fill="#222" fill-opacity="0.75"/>
+<circle cx="205.1" cy="256.0" r="4.5" fill="#222" fill-opacity="0.75"/>
+<circle cx="180.9" cy="231.8" r="4.5" fill="#222" fill-opacity="0.75"/>
+<circle cx="160.7" cy="118.3" r="4.5" fill="#222" fill-opacity="0.75"/>
+<circle cx="184.9" cy="280.6" r="4.5" fill="#222" fill-opacity="0.75"/>
+<circle cx="154.1" cy="197.1" r="4.5" fill="#222" fill-opacity="0.75"/>
+<circle cx="156.5" cy="249.2" r="4.5" fill="#222" fill-opacity="0.75"/>
+<circle cx="178.2" cy="136.0" r="4.5" fill="#b3261e" fill-opacity="0.75"/>
+<text class="t" x="512.6" y="330.2" text-anchor="end"><tspan style="fill:#222">B2GP-PLYP-D4</tspan></text>
+<text class="t" x="126.5" y="303.4" text-anchor="end"><tspan style="fill:#222">eSEN-MD-direct</tspan></text>
+<text class="t" x="84.5" y="149.6" text-anchor="start"><tspan style="fill:#222">AIMNet2</tspan></text>
+<text class="t" x="187.2" y="140.0" text-anchor="start"><tspan style="fill:#222">g-xTB</tspan></text>
+<text class="t" x="538.6" y="39.9" text-anchor="end"><tspan style="fill:#222">OLYP-D3BJ</tspan></text>
+<circle cx="66" cy="26" r="4.5" fill="#1a4f9c"/><text class="t" x="75" y="30">DFT</text>
+<circle cx="158" cy="26" r="4.5" fill="#222"/><text class="t" x="167" y="30">ML potential</text>
+<circle cx="250" cy="26" r="4.5" fill="#b3261e"/><text class="t" x="259" y="30">g-xTB</text>
+<line x1="342" x2="364" y1="26" y2="26" stroke="#222" stroke-width="1.3" stroke-dasharray="4 3"/><text class="t" x="370" y="30">Pareto front</text>
+</svg>
+<figcaption>Figure 1. Combined MAE (average of thermodynamic and kinetic error) against run time for all 24 methods. The best MLIP lands about 0.5 kcal/mol from the best double-hybrid DFT at four to five orders of magnitude lower cost. g-xTB is slower than most MLIPs and less accurate than nearly all of them. Data: <a href="https://github.com/Russellwolfe0/TRIP50-benchmarking/blob/main/data/final/final_data_table.csv">final_data_table.csv</a>.</figcaption>
+</figure>
+
+<p>I wrote the pipeline that runs every model on the reference geometries, parses the DFT output, and computes reaction energies and forward and reverse barriers. I report errors overall and by reaction type (C&ndash;C, C&ndash;O, C&ndash;S, C&ndash;Hal, Si&ndash;X, N&ndash;X and hydrogen-atom transfer), because model rankings change across categories. Only molecular models that take spin as input were usable. Spin-unaware and materials models were excluded.</p>
+
+<p><b>Follow-up: do ML potentials find the right conformer?</b> For each of the 106 non-TS species I generated RDKit conformers with AQME (553 in total), optimized them with each of the 16 MLIPs, and checked whether the lowest-energy conformer matches the model&rsquo;s own optimized reference geometry (within 0.5 kcal/mol). Match rates run from 49% to 74%. Selected disagreements were checked with &omega;B97M-V/def2-QZVPP single points: some lower conformers are real, others are model errors.</p>
+
+<figure>
+<svg viewBox="0 0 640 396" role="img" aria-label="Percent of 106 species for which the lowest-energy RDKit conformer matches the optimized reference geometry, for 16 ML potentials. Values range from 49 to 74 percent.">
+<line x1="170.0" x2="170.0" y1="0" y2="366" stroke="#e6e6e6"/><text class="t" x="170.0" y="384" text-anchor="middle">0%</text>
+<line x1="275.0" x2="275.0" y1="0" y2="366" stroke="#e6e6e6"/><text class="t" x="275.0" y="384" text-anchor="middle">25%</text>
+<line x1="380.0" x2="380.0" y1="0" y2="366" stroke="#e6e6e6"/><text class="t" x="380.0" y="384" text-anchor="middle">50%</text>
+<line x1="485.0" x2="485.0" y1="0" y2="366" stroke="#e6e6e6"/><text class="t" x="485.0" y="384" text-anchor="middle">75%</text>
+<line x1="590.0" x2="590.0" y1="0" y2="366" stroke="#e6e6e6"/><text class="t" x="590.0" y="384" text-anchor="middle">100%</text>
+<text class="t" x="160" y="17" text-anchor="end" style="fill:var(--ink)">AllScAIP-MD (cons.)</text><rect x="170" y="6" width="309.1" height="14" fill="#1a4f9c"/><text class="t" x="485.1" y="17">74%</text>
+<text class="t" x="160" y="39" text-anchor="end" style="fill:var(--ink)">POLAR-1 L</text><rect x="170" y="28" width="305.1" height="14" fill="#1a4f9c"/><text class="t" x="481.1" y="39">73%</text>
+<text class="t" x="160" y="61" text-anchor="end" style="fill:var(--ink)">POLAR-1 M</text><rect x="170" y="50" width="301.1" height="14" fill="#1a4f9c"/><text class="t" x="477.1" y="61">72%</text>
+<text class="t" x="160" y="83" text-anchor="end" style="fill:var(--ink)">UMA-S 1.2</text><rect x="170" y="72" width="301.1" height="14" fill="#1a4f9c"/><text class="t" x="477.1" y="83">72%</text>
+<text class="t" x="160" y="105" text-anchor="end" style="fill:var(--ink)">UMA-M 1.1</text><rect x="170" y="94" width="297.2" height="14" fill="#1a4f9c"/><text class="t" x="473.2" y="105">71%</text>
+<text class="t" x="160" y="127" text-anchor="end" style="fill:var(--ink)">UMA-S 1.1</text><rect x="170" y="116" width="297.2" height="14" fill="#1a4f9c"/><text class="t" x="473.2" y="127">71%</text>
+<text class="t" x="160" y="149" text-anchor="end" style="fill:var(--ink)">MACE-OMOL</text><rect x="170" y="138" width="293.2" height="14" fill="#1a4f9c"/><text class="t" x="469.2" y="149">70%</text>
+<text class="t" x="160" y="171" text-anchor="end" style="fill:var(--ink)">AllScAIP-MD (direct)</text><rect x="170" y="160" width="293.2" height="14" fill="#1a4f9c"/><text class="t" x="469.2" y="171">70%</text>
+<text class="t" x="160" y="193" text-anchor="end" style="fill:var(--ink)">OrbMol v1 (cons.)</text><rect x="170" y="182" width="289.2" height="14" fill="#1a4f9c"/><text class="t" x="465.2" y="193">69%</text>
+<text class="t" x="160" y="215" text-anchor="end" style="fill:var(--ink)">OrbMol v2</text><rect x="170" y="204" width="289.2" height="14" fill="#1a4f9c"/><text class="t" x="465.2" y="215">69%</text>
+<text class="t" x="160" y="237" text-anchor="end" style="fill:var(--ink)">eSEN-MD (direct)</text><rect x="170" y="226" width="285.3" height="14" fill="#1a4f9c"/><text class="t" x="461.3" y="237">68%</text>
+<text class="t" x="160" y="259" text-anchor="end" style="fill:var(--ink)">eSEN-SM (cons.)</text><rect x="170" y="248" width="285.3" height="14" fill="#1a4f9c"/><text class="t" x="461.3" y="259">68%</text>
+<text class="t" x="160" y="281" text-anchor="end" style="fill:var(--ink)">OrbMol v1 (direct)</text><rect x="170" y="270" width="273.4" height="14" fill="#1a4f9c"/><text class="t" x="449.4" y="281">65%</text>
+<text class="t" x="160" y="303" text-anchor="end" style="fill:var(--ink)">POLAR-1 S</text><rect x="170" y="292" width="265.5" height="14" fill="#1a4f9c"/><text class="t" x="441.5" y="303">63%</text>
+<text class="t" x="160" y="325" text-anchor="end" style="fill:var(--ink)">AIMNet2</text><rect x="170" y="314" width="261.5" height="14" fill="#1a4f9c"/><text class="t" x="437.5" y="325">62%</text>
+<text class="t" x="160" y="347" text-anchor="end" style="fill:var(--ink)">eSEN-SM (direct)</text><rect x="170" y="336" width="206.0" height="14" fill="#1a4f9c"/><text class="t" x="382.0" y="347">49%</text>
+</svg>
+<figcaption>Figure 2. Share of the 106 species where the best conformer matches the reference, by model. &ldquo;cons.&rdquo; = conservative (energy-gradient) forces.</figcaption>
+</figure>
+
+<p><a href="https://russellwolfe0.github.io/TRIP50-benchmarking/">Project website</a> &middot; <a href="https://github.com/Russellwolfe0/TRIP50-benchmarking">Code and data</a> &middot; <a href="https://doi.org/10.1021/acs.jctc.6c00144">Original paper</a></p>
+</section>
+
+<section id="projects">
+<h2>Other projects</h2>
+<h3>Black bear populations under drought</h3>
+<p class="meta">In progress. Python, stochastic simulation, age-structured models.</p>
+<p>How long a drought can a black bear population absorb before recovery becomes unlikely? I&rsquo;m building an age-structured model with yearly births, cub and adult survival, and density dependence, then letting drought reduce breeding and cub survival. I&rsquo;m checking a stochastic simulation against a matrix model built from the same rates.</p>
+</section>
+
+<section id="skills">
+<h2>Skills</h2>
+<dl>
+  <dt>Quantum chemistry</dt><dd>DFT, DLPNO-CCSD(T), basis sets, thermochemistry, conformer sampling</dd>
+  <dt>Software</dt><dd>ORCA, Gaussian, g-xTB, ASE, RDKit, AQME, Python (pandas, NumPy, Matplotlib)</dd>
+  <dt>Machine learning</dt><dd>Universal and molecular ML potentials (UMA, eSEN, MACE-OMol, OrbMol, AIMNet2), benchmark design and evaluation</dd>
+  <dt>Computing</dt><dd>Linux compute servers and GPU jobs, Git, GitHub Pages</dd>
+</dl>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p><a href="mailto:russellwolfe0@gmail.com">russellwolfe0@gmail.com</a> &middot; <a href="https://github.com/Russellwolfe0">GitHub</a> &middot; <a href="https://www.linkedin.com/in/russell-wolfe-162187219/">LinkedIn</a> &middot; <a href="resume.pdf">Resume (PDF)</a></p>
+</section>
+</main>
+</body>
+</html>
